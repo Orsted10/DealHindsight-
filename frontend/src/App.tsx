@@ -34,6 +34,12 @@ function App() {
   const [hindsightLive, setHindsightLive] = useState<boolean>(false);
   const [memoryUpdated, setMemoryUpdated] = useState<number>(Date.now());
 
+  const activeDealRef = useRef<Deal | null>(activeDeal);
+  
+  useEffect(() => {
+    activeDealRef.current = activeDeal;
+  }, [activeDeal]);
+
   const fetchDealsAndSettings = () => {
     // Fetch Settings
     fetch('http://127.0.0.1:8000/api/settings')
@@ -50,7 +56,7 @@ function App() {
         setDeals(data);
         
         // Find if our currently selected deal still exists in the fresh list
-        const currentDealId = activeDeal?.id;
+        const currentDealId = activeDealRef.current?.id;
         const updatedDeal = data.find((d) => d.id === currentDealId);
         
         if (updatedDeal) {
