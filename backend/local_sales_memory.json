@@ -24,5 +24,21 @@
       "company": "Globex"
     },
     "context": "Integration Requirements"
+  },
+  {
+    "id": "mem-95ae9207",
+    "text": "Call Log: Call 2: Pricing Escalation on deal deal-globex.\nTranscript Summary: Bob Smith called to discuss pricing. He stated Globex has a hard budget cap of $95,000 for this project line. He mentioned: 'We are reviewing Competitor Y's offer, they gave us a 25% discount bringing their pricing to $90k.' Bob requested our absolute best discount to win the approval.\nExtracted Objections: Budget Cap limit\nCompetitors mentioned: Competitor Y",
+    "type": "experience",
+    "tags": [
+      "globex",
+      "call-log",
+      "objection"
+    ],
+    "metadata": {
+      "deal_id": "deal-globex",
+      "type": "experience"
+    },
+    "context": "Sales transcript log for deal-globex",
+    "timestamp": "2026-06-06T23:02:34.901619"
   }
 ]

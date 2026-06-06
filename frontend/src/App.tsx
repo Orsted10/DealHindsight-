@@ -49,13 +49,14 @@ function App() {
       .then((data: Deal[]) => {
         setDeals(data);
         
-        if (activeDeal) {
-          const updatedDeal = data.find((d) => d.id === activeDeal.id);
-          if (updatedDeal) {
-            setActiveDeal(updatedDeal);
-          }
-        } else {
-          // Default selection to first active deal
+        // Find if our currently selected deal still exists in the fresh list
+        const currentDealId = activeDeal?.id;
+        const updatedDeal = data.find((d) => d.id === currentDealId);
+        
+        if (updatedDeal) {
+          setActiveDeal(updatedDeal);
+        } else if (!currentDealId) {
+          // Only auto-select the first active deal on initial load (when no deal is selected yet)
           const firstActive = data.find((d) => d.stage !== 'Closed-Won' && d.stage !== 'Closed-Lost');
           if (firstActive) {
             setActiveDeal(firstActive);
