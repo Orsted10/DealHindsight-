@@ -1,0 +1,28 @@
+[
+  {
+    "id": "fact-1",
+    "text": "Acme Corp is an enterprise prospect with 500 potential user seats deploying on AWS.",
+    "type": "fact",
+    "tags": [
+      "system-info",
+      "acme-corp"
+    ],
+    "metadata": {
+      "company": "Acme Corp"
+    },
+    "context": "Customer Profile"
+  },
+  {
+    "id": "fact-2",
+    "text": "Globex Corporation requires native bi-directional Jira ticket synchronization before onboarding.",
+    "type": "fact",
+    "tags": [
+      "objection",
+      "globex"
+    ],
+    "metadata": {
+      "company": "Globex"
+    },
+    "context": "Integration Requirements"
+  }
+]
