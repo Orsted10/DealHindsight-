@@ -7,7 +7,7 @@ class AppSettings(BaseModel):
     hindsight_base_url: str = "http://localhost:8888"
     openai_api_key: Optional[str] = None
     groq_api_key: Optional[str] = None
-    live_mode: bool = False  # False means it runs the local Hindsight / LLM mock engine
+    live_mode: bool = True  # True means it runs the live LLM client
 
 # Global active settings, loaded from environment variables by default
 active_settings = AppSettings(
@@ -15,5 +15,5 @@ active_settings = AppSettings(
     hindsight_base_url=os.getenv("HINDSIGHT_BASE_URL", "http://localhost:8888"),
     openai_api_key=os.getenv("OPENAI_API_KEY"),
     groq_api_key=os.getenv("GROQ_API_KEY"),
-    live_mode=False  # Start in simulation mode by default so it runs immediately
+    live_mode=True  # Start in live mode by default to use Groq LLM
 )

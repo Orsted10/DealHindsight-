@@ -40,5 +40,21 @@
     },
     "context": "Sales transcript log for deal-globex",
     "timestamp": "2026-06-06T23:02:34.901619"
+  },
+  {
+    "id": "mem-8e7c1777",
+    "text": "Call Log: Call 2: Security Objections Audit on deal deal-acme.\nTranscript Summary: Jane Doe initiated a review call. Jane stated that their legal department has marked our lack of native SOC-2 audit reports as a blocker. She stated: 'Acme Corp cannot proceed with procurement without SOC-2 or an isolated dedicated hosting zone.' Jane mentioned Competitor X has SOC-2 and is pushing them to sign.\nExtracted Objections: Lacks SOC-2 Compliance\nCompetitors mentioned: Competitor X",
+    "type": "experience",
+    "tags": [
+      "acme-corp",
+      "call-log",
+      "objection"
+    ],
+    "metadata": {
+      "deal_id": "deal-acme",
+      "type": "experience"
+    },
+    "context": "Sales transcript log for deal-acme",
+    "timestamp": "2026-06-06T23:08:53.090039"
   }
 ]

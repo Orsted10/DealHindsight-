@@ -121,6 +121,40 @@ def chat_with_coach(deal_id: str, payload: ChatRequest):
 
     comp_tag = "acme-corp" if "acme" in deal_id else "globex"
     
+    # --- AUTOMATIC SELF-LEARNING MEMORY EXTRACTION ---
+    # Automatically scan the incoming chat message to extract objections & competitors and save them
+    trans_lower = payload.message.lower()
+    extracted_objections = []
+    extracted_competitors = []
+    
+    if "soc-2" in trans_lower or "security" in trans_lower:
+        extracted_objections.append("Lacks SOC-2 Compliance")
+    if "pricing" in trans_lower or "budget" in trans_lower or "cost" in trans_lower:
+        extracted_objections.append("Budget Cap limit")
+    if "jira" in trans_lower or "integrate" in trans_lower:
+        extracted_objections.append("Lacks Jira Integration")
+        
+    for comp in ["Competitor X", "Competitor Y", "HubSpot", "Salesforce"]:
+        if comp.lower() in trans_lower:
+            extracted_competitors.append(comp)
+            
+    if extracted_objections or extracted_competitors:
+        # Save to Hindsight
+        hindsight_wrapper.retain(
+            bank_id=BANK_ID,
+            content=f"Self-Learned from Rep Chat: {payload.message}",
+            tags=[comp_tag, "call-log", "objection"],
+            metadata={"deal_id": deal_id, "type": "experience", "source": "chat-self-learn"},
+            context=f"Self-learned chat context for {deal_id}"
+        )
+        # Update local deal state in the deal manager
+        for obj in extracted_objections:
+            if obj not in deal.active_objections:
+                deal.active_objections.append(obj)
+        for comp in extracted_competitors:
+            if comp not in deal.competitors:
+                deal.competitors.append(comp)
+
     # 1. Recall Hindsight Memory
     recall_res = hindsight_wrapper.recall(
         bank_id=BANK_ID,
