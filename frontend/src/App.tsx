@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { DealWorkspace } from './components/DealWorkspace';
 import { MemoryVisualizer } from './components/MemoryVisualizer';
